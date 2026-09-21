@@ -99,7 +99,7 @@ export default function Home() {
   Resume
 </a>
    <Link
-  to="/projects"
+  to="/Projects"
   className="btn btn-dark"
 >
   Portfolio
