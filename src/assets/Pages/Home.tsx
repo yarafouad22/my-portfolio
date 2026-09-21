@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 
 export default function Home() {
     const text = `I’m a Front-End Developer passionate about turning ideas into modern, responsive, and user-friendly web experiences. I specialize in building interactive interfaces with React.js, JavaScript, TypeScript, and modern UI libraries, with a strong focus on clean code, reusable components, responsive design, and smooth user experiences. I enjoy transforming designs into functional web applications and solving real-world problems through technology. I’m always exploring new tools and best practices to improve my skills and create digital experiences that are both visually engaging and technically reliable. My goal is simple: build interfaces that look great, feel intuitive, and make a real impact.`;
@@ -98,12 +98,12 @@ export default function Home() {
 >
   Resume
 </a>
-    <a
-      href="/Projects"
-      className="btn btn-dark"
-    >
-      Portfolio
-    </a>
+   <Link
+  to="/projects"
+  className="btn btn-dark"
+>
+  Portfolio
+</Link>
     </div>
 
   </div>
