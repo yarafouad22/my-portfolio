@@ -26,42 +26,33 @@ export default function Home() {
   return (
     <>
       {/* HERO SECTION */}
-      <section
-        id="Home"
-        className="position-relative overflow-hidden"
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          padding: "100px 0 60px",
-        }}
-      >
+<section
+  id="Home"
+  className="position-relative overflow-hidden"
+  style={{
+    minHeight: "100vh",
+    display: "flex",
+    alignItems: "center",
+    padding: "100px 0 60px",
+  }}
+>
+
         {/* Hexagon Background */}
         <HexagonBackground
-          className="position-absolute top-0 start-0 w-100 h-100"
-        />
-
-        {/* Optional overlay */}
-        <div
-          className="position-absolute top-0 start-0 w-100 h-100"
-          style={{
-            background: "rgba(255, 255, 255, 0.35)",
-            zIndex: 1,
-            pointerEvents: "none",
-          }}
+          className="hay"
         />
 
         {/* Hero Content */}
         <div
           className="container position-relative"
           style={{
-            zIndex: 2,
+            zIndex: 3,
           }}
         >
           <div className="row align-items-center g-5">
 
             {/* LEFT SIDE */}
-            <div className="col-md-6 text-center">
+            <div className="col-md-6 text-center left-side">
 
               {/* Profile Image */}
               <div className="profile-image">
@@ -126,7 +117,7 @@ export default function Home() {
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="col-md-6 text-center">
+            <div className="col-md-6 text-center right-side">
 
               <h2 className="text-start">
                 About Me
@@ -162,11 +153,11 @@ export default function Home() {
             </div>
           </div>
 
+
           {/* Show Project */}
           <div className="d-flex justify-content-center mt-5">
             <ShowProject />
           </div>
-
         </div>
       </section>
     </>

@@ -1,5 +1,6 @@
-import { AnimatePresence, motion, type Transition } from "motion/react";
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 interface Skill {
   name: string;
@@ -8,7 +9,6 @@ interface Skill {
 }
 
 const skills: Skill[] = [
-  // Frontend
   {
     name: "React.js",
     category: "Frontend",
@@ -122,45 +122,21 @@ const categories = [
   "Tools & APIs",
 ];
 
-const spring: Transition = {
-  type: "spring",
-  damping: 20,
-  stiffness: 300,
-};
-
-function shuffle<T>(array: T[]): T[] {
-  return [...array].sort(() => Math.random() - 0.5);
-}
-
 function Skills() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [displayedSkills, setDisplayedSkills] = useState<Skill[]>(skills);
 
-  // Filter skills according to category
-  useEffect(() => {
-    const filtered =
-      activeCategory === "All"
-        ? skills
-        : skills.filter((skill) => skill.category === activeCategory);
-
-    setDisplayedSkills(filtered);
-  }, [activeCategory]);
-
-  // Reorder skills automatically
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setDisplayedSkills((current) => shuffle(current));
-    }, 1200);
-
-    return () => clearTimeout(timeout);
-  }, [displayedSkills]);
+  const displayedSkills =
+    activeCategory === "All"
+      ? skills
+      : skills.filter(
+          (skill) => skill.category === activeCategory
+        );
 
   return (
     <section
       id="Skills"
       style={{
         padding: "100px 20px",
-        background: "#fff",
       }}
     >
       <div
@@ -169,12 +145,16 @@ function Skills() {
           margin: "0 auto",
         }}
       >
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{
+            duration: 0.7,
+            ease: "easeOut",
+          }}
           style={{
             textAlign: "center",
             marginBottom: "45px",
@@ -216,7 +196,14 @@ function Skills() {
         </motion.div>
 
         {/* Categories */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.5,
+            delay: 0.15,
+          }}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -234,7 +221,6 @@ function Skills() {
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 style={{
-                  position: "relative",
                   border: "none",
                   background: "transparent",
                   padding: "10px 18px",
@@ -242,124 +228,86 @@ function Skills() {
                   fontWeight: isActive ? 700 : 500,
                   color: isActive ? "#111" : "#777",
                   cursor: "pointer",
-                  transition: "0.3s",
+                  borderBottom: isActive
+                    ? "3px solid #111"
+                    : "3px solid transparent",
+                  transition: "all 0.3s ease",
                 }}
               >
                 {category}
-
-                {isActive && (
-                  <motion.div
-                    layoutId="activeSkillTab"
-                    style={{
-                      position: "absolute",
-                      left: "15%",
-                      bottom: 0,
-                      width: "70%",
-                      height: "3px",
-                      borderRadius: "10px",
-                      background: "#111",
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 30,
-                    }}
-                  />
-                )}
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Skills Container */}
-        <div
-          style={{
-            minHeight: "330px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <motion.ul
-            layout
+        {/* Skills */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{
+              duration: 0.35,
+            }}
             style={{
-              listStyle: "none",
-              padding: 0,
-              margin: 0,
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "16px",
-              maxWidth: "850px",
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(180px, 1fr))",
+              gap: "15px",
             }}
           >
-            <AnimatePresence mode="popLayout">
-              {displayedSkills.map((skill) => (
-                <motion.li
-                  key={skill.name}
-                  layout
-                  initial={{
-                    opacity: 0,
-                    scale: 0.7,
-                    y: 20,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    y: 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.7,
-                    y: -20,
-                  }}
-                  transition={spring}
+            {displayedSkills.map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                initial={{
+                  opacity: 0,
+                  y: 25,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.05,
+                  ease: "easeOut",
+                }}
+                whileHover={{
+                  y: -6,
+                  scale: 1.02,
+                }}
+                style={{
+                  padding: "20px",
+                  border: "1px solid #ddd",
+                  background: "#f9f9f9",
+                  borderRadius: "12px",
+                  textAlign: "center",
+                  cursor: "default",
+                }}
+              >
+                <motion.i
+                  className={skill.icon}
                   whileHover={{
-                    scale: 1.06,
-                    y: -5,
+                    scale: 1.15,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 15,
                   }}
                   style={{
-                    width: "180px",
-                    minHeight: "100px",
-                    padding: "20px 15px",
-                    borderRadius: "16px",
-                    background: "#f8f8f8",
-                    border: "1px solid #eeeeee",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "10px",
-                    cursor: "default",
-                    boxShadow: "0 8px 25px rgba(0,0,0,0.05)",
+                    fontSize: "28px",
+                    display: "block",
+                    marginBottom: "10px",
                   }}
-                >
-                  {/* Icon */}
-                  <i
-                    className={skill.icon}
-                    style={{
-                      fontSize: "30px",
-                      color: "#111",
-                    }}
-                  />
+                />
 
-                  {/* Skill name */}
-                  <span
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: 600,
-                      color: "#222",
-                      textAlign: "center",
-                    }}
-                  >
-                    {skill.name}
-                  </span>
-                </motion.li>
-              ))}
-            </AnimatePresence>
-          </motion.ul>
-        </div>
+                <strong>{skill.name}</strong>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
