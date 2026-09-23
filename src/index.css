@@ -622,8 +622,8 @@ body {
 }
 
 html.dark .hay {
-  opacity: 0.35;
-  
+  opacity: 0.35 !important;
+  background: var(--gradient-soft) !important;
 }
 html.dark .navbar {
   background: var(--bg-color) !important;
