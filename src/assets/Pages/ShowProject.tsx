@@ -105,12 +105,11 @@ export default function Skills() {
 
       {/* CARDS */}
       <div className="skills-container">
-        {categories.map((category, index) => (
+        {categories.map((category) => (
           <SkillCard
             key={category.name}
-            category={category}
-            index={index}
-          />
+            category={category} 
+            index={0}          />
         ))}
       </div>
     </section>
