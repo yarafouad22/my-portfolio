@@ -1,316 +1,209 @@
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
+import type { Variants } from "motion/react";
 
 interface Skill {
   name: string;
-  category: string;
   icon: string;
 }
 
-const skills: Skill[] = [
-  {
-    name: "React.js",
-    category: "Frontend",
-    icon: "bi bi-react",
-  },
-  {
-    name: "JavaScript",
-    category: "Frontend",
-    icon: "bi bi-filetype-js",
-  },
-  {
-    name: "TypeScript",
-    category: "Frontend",
-    icon: "bi bi-filetype-tsx",
-  },
-  {
-    name: "Redux",
-    category: "Frontend",
-    icon: "bi bi-arrow-repeat",
-  },
-  {
-    name: "React Router",
-    category: "Frontend",
-    icon: "bi bi-signpost-2",
-  },
-  {
-    name: "Context API",
-    category: "Frontend",
-    icon: "bi bi-diagram-3",
-  },
+interface SkillCategory {
+  name: string;
+  icon: string;
+  hueA: number;
+  hueB: number;
+  skills: Skill[];
+}
 
-  // UI & Styling
+const categories: SkillCategory[] = [
   {
-    name: "HTML5",
-    category: "UI & Styling",
-    icon: "bi bi-filetype-html",
+    name: "Frontend",
+    icon: "bi bi-code-slash",
+    hueA: 210,
+    hueB: 260,
+    skills: [
+      { name: "React.js", icon: "bi bi-react" },
+      { name: "JavaScript", icon: "bi bi-filetype-js" },
+      { name: "TypeScript", icon: "bi bi-filetype-tsx" },
+      { name: "Redux", icon: "bi bi-arrow-repeat" },
+      { name: "React Router", icon: "bi bi-signpost-2" },
+      { name: "Context API", icon: "bi bi-diagram-3" },
+    ],
   },
   {
-    name: "CSS3",
-    category: "UI & Styling",
-    icon: "bi bi-filetype-css",
+    name: "UI & Styling",
+    icon: "bi bi-palette",
+    hueA: 300,
+    hueB: 340,
+    skills: [
+      { name: "HTML5", icon: "bi bi-filetype-html" },
+      { name: "CSS3", icon: "bi bi-filetype-css" },
+      { name: "Bootstrap", icon: "bi bi-bootstrap" },
+      { name: "Tailwind CSS", icon: "bi bi-wind" },
+      { name: "Material UI", icon: "bi bi-grid-3x3-gap" },
+      { name: "Responsive Design", icon: "bi bi-phone" },
+      { name: "Framer Motion", icon: "bi bi-stars" },
+    ],
   },
   {
-    name: "Bootstrap",
-    category: "UI & Styling",
-    icon: "bi bi-bootstrap",
-  },
-  {
-    name: "Tailwind CSS",
-    category: "UI & Styling",
-    icon: "bi bi-wind",
-  },
-  {
-    name: "Material UI",
-    category: "UI & Styling",
-    icon: "bi bi-grid-3x3-gap",
-  },
-  {
-    name: "Responsive Design",
-    category: "UI & Styling",
-    icon: "bi bi-phone",
-  },
-  {
-    name: "Framer Motion",
-    category: "UI & Styling",
-    icon: "bi bi-stars",
-  },
-
-  // Tools & APIs
-  {
-    name: "REST API",
-    category: "Tools & APIs",
-    icon: "bi bi-cloud-arrow-down",
-  },
-  {
-    name: "RTK Query",
-    category: "Tools & APIs",
-    icon: "bi bi-arrow-repeat",
-  },
-  {
-    name: "Socket.IO",
-    category: "Tools & APIs",
-    icon: "bi bi-broadcast",
-  },
-  {
-    name: "Formik / Yup",
-    category: "Tools & APIs",
-    icon: "bi bi-ui-checks",
-  },
-  {
-    name: "Git",
-    category: "Tools & APIs",
-    icon: "bi bi-git",
-  },
-  {
-    name: "GitHub",
-    category: "Tools & APIs",
-    icon: "bi bi-github",
-  },
-  {
-    name: "Postman",
-    category: "Tools & APIs",
-    icon: "bi bi-send",
+    name: "Tools & APIs",
+    icon: "bi bi-tools",
+    hueA: 40,
+    hueB: 80,
+    skills: [
+      { name: "REST API", icon: "bi bi-cloud-arrow-down" },
+      { name: "RTK Query", icon: "bi bi-arrow-repeat" },
+      { name: "Socket.IO", icon: "bi bi-broadcast" },
+      { name: "Formik / Yup", icon: "bi bi-ui-checks" },
+      { name: "Git", icon: "bi bi-git" },
+      { name: "GitHub", icon: "bi bi-github" },
+      { name: "Postman", icon: "bi bi-send" },
+    ],
   },
 ];
 
-const categories = [
-  "All",
-  "Frontend",
-  "UI & Styling",
-  "Tools & APIs",
-];
+const cardVariants: Variants = {
+  offscreen: {
+    y: 200,
+    opacity: 0,
+  },
 
-function Skills() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  onscreen: {
+    y: 30,
+    opacity: 1,
+    rotate: -5,
 
-  const displayedSkills =
-    activeCategory === "All"
-      ? skills
-      : skills.filter(
-          (skill) => skill.category === activeCategory
-        );
+    transition: {
+      type: "spring",
+      bounce: 0.35,
+      duration: 0.8,
+    },
+  },
+};
 
+const hue = (h: number) => `hsl(${h}, 100%, 50%)`;
+
+export default function Skills() {
   return (
     <section
       id="Skills"
-      style={{
-        padding: "100px 20px",
-      }}
+      className="skills-section"
     >
-      <div
-        style={{
-          maxWidth: "950px",
-          margin: "0 auto",
-        }}
-      >
+      {/* TITLE */}
+      <div className="skills-header">
+        <p className="skills-label">MY SKILLS</p>
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.7,
-            ease: "easeOut",
-          }}
-          style={{
-            textAlign: "center",
-            marginBottom: "45px",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "14px",
-              fontWeight: 700,
-              letterSpacing: "3px",
-              color: "#777",
-              marginBottom: "10px",
-            }}
-          >
-            MY SKILLS
-          </p>
+        <h2 className="skills-title">
+          Technologies I Work With
+        </h2>
 
-          <h2
-            style={{
-              fontSize: "42px",
-              fontWeight: 800,
-              marginBottom: "15px",
-            }}
-          >
-            Technologies I Work With
-          </h2>
+        <p className="skills-description">
+          A collection of technologies and tools I use to build modern,
+          responsive, and interactive web applications.
+        </p>
+      </div>
 
-          <p
-            style={{
-              maxWidth: "650px",
-              margin: "0 auto",
-              color: "#777",
-              lineHeight: 1.7,
-            }}
-          >
-            A collection of technologies and tools I use to build modern,
-            responsive, and interactive web applications.
-          </p>
-        </motion.div>
-
-        {/* Categories */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.5,
-            delay: 0.15,
-          }}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: "8px",
-            marginBottom: "45px",
-          }}
-        >
-          {categories.map((category) => {
-            const isActive = activeCategory === category;
-
-            return (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                style={{
-                  border: "none",
-                  background: "transparent",
-                  padding: "10px 18px",
-                  fontSize: "15px",
-                  fontWeight: isActive ? 700 : 500,
-                  color: isActive ? "#111" : "#777",
-                  cursor: "pointer",
-                  borderBottom: isActive
-                    ? "3px solid #111"
-                    : "3px solid transparent",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                {category}
-              </button>
-            );
-          })}
-        </motion.div>
-
-        {/* Skills */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{
-              duration: 0.35,
-            }}
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit, minmax(180px, 1fr))",
-              gap: "15px",
-            }}
-          >
-            {displayedSkills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                initial={{
-                  opacity: 0,
-                  y: 25,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.05,
-                  ease: "easeOut",
-                }}
-                whileHover={{
-                  y: -6,
-                  scale: 1.02,
-                }}
-                style={{
-                  padding: "20px",
-                  border: "1px solid #ddd",
-                  background: "#f9f9f9",
-                  borderRadius: "12px",
-                  textAlign: "center",
-                  cursor: "default",
-                }}
-              >
-                <motion.i
-                  className={skill.icon}
-                  whileHover={{
-                    scale: 1.15,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 15,
-                  }}
-                  style={{
-                    fontSize: "28px",
-                    display: "block",
-                    marginBottom: "10px",
-                  }}
-                />
-
-                <strong>{skill.name}</strong>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+      {/* CARDS */}
+      <div className="skills-container">
+        {categories.map((category, index) => (
+          <SkillCard
+            key={category.name}
+            category={category}
+            index={index}
+          />
+        ))}
       </div>
     </section>
   );
 }
 
-export default Skills;
+function SkillCard({
+  category,
+  index,
+}: {
+  category: SkillCategory;
+  index: number;
+}) {
+  const background = `linear-gradient(
+    135deg,
+    ${hue(category.hueA)},
+    ${hue(category.hueB)}
+  )`;
+
+  return (
+    <motion.div
+      className="skill-card-container"
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{
+        amount: 0.35,
+        once: true,
+      }}
+    >
+      {/* GRADIENT BACKGROUND */}
+      <motion.div
+        className="skill-splash"
+        style={{ background }}
+        animate={{
+          scale: [1, 1.04, 1],
+          rotate: [-8, -5, -8],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* CARD */}
+      <motion.div
+        variants={cardVariants}
+        className="skill-card"
+        whileHover={{
+          y: -8,
+          rotate: -2,
+          boxShadow:
+            "0 25px 60px rgba(108, 99, 255, 0.22)",
+        }}
+      >
+        {/* CATEGORY ICON */}
+        <motion.div
+          className="skill-category-icon"
+          whileHover={{
+            scale: 1.1,
+            rotate: 8,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+          }}
+        >
+          <i className={category.icon} />
+        </motion.div>
+
+        {/* CATEGORY NAME */}
+        <h3 className="skill-category-name">
+          {category.name}
+        </h3>
+
+        {/* SKILLS */}
+        <div className="skills-grid">
+          {category.skills.map((skill) => (
+            <motion.div
+              key={skill.name}
+              className="skill-item"
+              whileHover={{
+                scale: 1.06,
+                y: -4,
+              }}
+            >
+              <i className={skill.icon} />
+
+              <span>{skill.name}</span>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}

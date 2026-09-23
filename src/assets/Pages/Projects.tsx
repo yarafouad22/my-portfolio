@@ -1,3 +1,4 @@
+
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
@@ -119,76 +120,33 @@ function Projects() {
         });
 
   return (
-    <section
-      id="Projects"
-      style={{
-        padding: "100px 20px",
-        background: "#fff",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-        }}
-      >
-        {/* Header */}
+    <section id="Projects" className="projects-section">
+      <div className="projects-container">
+
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          style={{
-            textAlign: "center",
-            marginBottom: "45px",
-          }}
+          className="projects-header"
         >
-          <p
-            style={{
-              fontSize: "14px",
-              fontWeight: 700,
-              letterSpacing: "3px",
-              color: "#777",
-              marginBottom: "10px",
-            }}
-          >
+          <p className="projects-label">
             MY WORK
           </p>
 
-          <h2
-            style={{
-              fontSize: "42px",
-              fontWeight: 800,
-              marginBottom: "15px",
-            }}
-          >
+          <h2 className="projects-title">
             Featured Projects
           </h2>
 
-          <p
-            style={{
-              maxWidth: "650px",
-              margin: "0 auto",
-              color: "#777",
-              lineHeight: 1.7,
-            }}
-          >
+          <p className="projects-description">
             A collection of projects showcasing my experience in frontend
             development, responsive design, APIs, and modern web technologies.
           </p>
         </motion.div>
 
-        {/* Categories */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "10px",
-            flexWrap: "wrap",
-            marginBottom: "45px",
-          }}
-        >
+        {/* CATEGORIES */}
+        <div className="projects-categories">
           {categories.map((category) => {
             const isActive = activeCategory === category;
 
@@ -196,32 +154,16 @@ function Projects() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                style={{
-                  position: "relative",
-                  border: "none",
-                  background: "transparent",
-                  padding: "10px 18px",
-                  fontSize: "15px",
-                  fontWeight: isActive ? 700 : 500,
-                  color: isActive ? "#111" : "#777",
-                  cursor: "pointer",
-                  transition: "0.3s",
-                }}
+                className={`project-category ${
+                  isActive ? "active" : ""
+                }`}
               >
                 {category}
 
                 {isActive && (
                   <motion.div
                     layoutId="activeProjectTab"
-                    style={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: "15%",
-                      width: "70%",
-                      height: "3px",
-                      borderRadius: "10px",
-                      background: "#111",
-                    }}
+                    className="category-indicator"
                     transition={{
                       type: "spring",
                       stiffness: 400,
@@ -234,15 +176,8 @@ function Projects() {
           })}
         </div>
 
-        {/* Projects */}
-        <motion.div
-          layout
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "25px",
-          }}
-        >
+        {/* PROJECTS GRID */}
+        <motion.div layout className="projects-grid">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <motion.div
@@ -270,108 +205,56 @@ function Projects() {
                 whileHover={{
                   y: -8,
                 }}
-                style={{
-                  background: "#fff",
-                  border: "1px solid #eee",
-                  borderRadius: "18px",
-                  overflow: "hidden",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
-                }}
+                className="project-card"
               >
-                {/* Image */}
-                <div
-                  style={{
-                    width: "100%",
-                    height: "210px",
-                    overflow: "hidden",
-                    background: "#f5f5f5",
-                  }}
-                >
+                {/* IMAGE */}
+                <div className="project-image-wrapper">
                   <motion.img
                     src={project.image}
                     alt={project.title}
                     whileHover={{
-                      scale: 1.05,
+                      scale: 1.06,
                     }}
                     transition={{
-                      duration: 0.4,
+                      duration: 0.45,
                     }}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
+                    className="project-image"
                   />
+
+                  <div className="project-image-overlay" />
                 </div>
 
-                {/* Content */}
-                <div
-                  style={{
-                    padding: "22px",
-                  }}
-                >
-                  <h3
-                    style={{
-                      fontSize: "22px",
-                      fontWeight: 700,
-                      marginBottom: "10px",
-                    }}
-                  >
+                {/* CONTENT */}
+                <div className="project-content">
+                  <h3 className="project-title">
                     {project.title}
                   </h3>
 
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      lineHeight: 1.7,
-                      color: "#777",
-                      minHeight: "70px",
-                      marginBottom: "18px",
-                    }}
-                  >
+                  <p className="project-description">
                     {project.description}
                   </p>
 
-                  {/* Technologies */}
-                  <div
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: "7px",
-                      marginBottom: "20px",
-                    }}
-                  >
+                  {/* TECHNOLOGIES */}
+                  <div className="project-technologies">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        style={{
-                          background: "#f4f4f4",
-                          color: "#333",
-                          padding: "5px 10px",
-                          borderRadius: "20px",
-                          fontSize: "12px",
-                          fontWeight: 600,
-                        }}
+                        className="project-tech"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  {/* Buttons */}
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "10px",
-                    }}
-                  >
+                  {/* BUTTONS */}
+                  <div className="project-links">
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-dark btn-sm"
+                      className="theme-btn project-btn"
                     >
-                      <i className="bi bi-github me-1"></i>
+                      <i className="bi bi-github" />
                       GitHub
                     </a>
 
@@ -379,9 +262,9 @@ function Projects() {
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-outline-dark btn-sm"
+                      className="theme-btn project-btn"
                     >
-                      <i className="bi bi-box-arrow-up-right me-1"></i>
+                      <i className="bi bi-box-arrow-up-right" />
                       Live Demo
                     </a>
                   </div>
@@ -391,16 +274,12 @@ function Projects() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Empty state */}
+        {/* EMPTY STATE */}
         {filteredProjects.length === 0 && (
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            style={{
-              textAlign: "center",
-              color: "#777",
-              marginTop: "40px",
-            }}
+            className="projects-empty"
           >
             No projects found in this category.
           </motion.p>

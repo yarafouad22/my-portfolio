@@ -16,19 +16,18 @@ export default function Contact() {
     const form = e.currentTarget;
 
     try {
-            await emailjs.send(
-                           "service_3tpo8f1",
-                          "template_nfb1p9i",
-       {
-    from_name: form.from_name.value,
-    from_email: form.from_email.value,
-    message: form.message.value,
-  },
-  {
-    publicKey: "TDN_Ty9VLcIhDsddn",
-  }
+      await emailjs.send(
+        "service_3tpo8f1",
+        "template_nfb1p9i",
+        {
+          from_name: form.from_name.value,
+          from_email: form.from_email.value,
+          message: form.message.value,
+        },
+        {
+          publicKey: "TDN_Ty9VLcIhDsddn",
+        }
       );
-
 
       setSent(true);
       form.reset();
@@ -41,62 +40,26 @@ export default function Contact() {
   };
 
   return (
-    <section
-      id="Contact"
-      style={{
-        minHeight: "100vh",
-        padding: "100px 20px 60px",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <div
-        className="container"
-        style={{
-          maxWidth: "1100px",
-        }}
-      >
+    <section id="Contact" className="contact-section">
+      <div className="contact-container">
+
         {/* Header */}
         <motion.div
+          className="contact-header"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          style={{
-            textAlign: "center",
-            marginBottom: "50px",
-          }}
         >
-          <p
-            style={{
-              fontSize: "14px",
-              fontWeight: 700,
-              letterSpacing: "3px",
-              color: "#777",
-              marginBottom: "10px",
-            }}
-          >
+          <p className="contact-label">
             GET IN TOUCH
           </p>
 
-          <h2
-            style={{
-              fontSize: "42px",
-              fontWeight: 800,
-              marginBottom: "15px",
-            }}
-          >
+          <h2 className="contact-title">
             Contact Me
           </h2>
 
-          <p
-            style={{
-              maxWidth: "650px",
-              margin: "0 auto",
-              color: "#777",
-              lineHeight: 1.7,
-            }}
-          >
+          <p className="contact-description">
             Have a project in mind or want to discuss an opportunity?
             Feel free to get in touch with me.
           </p>
@@ -112,89 +75,60 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h3
-              style={{
-                fontSize: "28px",
-                fontWeight: 700,
-                marginBottom: "20px",
-              }}
-            >
-              Let's talk
-            </h3>
+            <div className="contact-info">
 
-            <p
-              style={{
-                color: "#777",
-                lineHeight: 1.8,
-                marginBottom: "30px",
-              }}
-            >
-              I'm always open to discussing new projects, creative ideas,
-              or opportunities to be part of your team.
-            </p>
+              <h3 className="contact-subtitle">
+                Let's talk
+              </h3>
 
-            {/* Email */}
-            <a
-              href="mailto:yaraf4902email@gmail.com"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "15px",
-                textDecoration: "none",
-                color: "#111",
-                marginBottom: "20px",
-              }}
-            >
-              <i
-                className="bi bi-envelope-fill"
-                style={{ fontSize: "24px" }}
-              ></i>
+              <p className="contact-text">
+                I'm always open to discussing new projects, creative ideas,
+                or opportunities to be part of your team.
+              </p>
 
-              <span>yaraf4902email@gmail.com</span>
-            </a>
+              {/* Email */}
+              <a
+                href="mailto:yaraf4902email@gmail.com"
+                className="contact-link"
+              >
+                <span className="contact-icon">
+                  <i className="bi bi-envelope-fill"></i>
+                </span>
 
-            {/* GitHub */}
-            <a
-              href="https://github.com/yarafouad22"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "15px",
-                textDecoration: "none",
-                color: "#111",
-                marginBottom: "20px",
-              }}
-            >
-              <i
-                className="bi bi-github"
-                style={{ fontSize: "24px" }}
-              ></i>
+                <span>
+                  yaraf4902email@gmail.com
+                </span>
+              </a>
 
-              <span>GitHub</span>
-            </a>
+              {/* GitHub */}
+              <a
+                href="https://github.com/yarafouad22"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
+                <span className="contact-icon">
+                  <i className="bi bi-github"></i>
+                </span>
 
-            {/* LinkedIn */}
-            <a
-              href="https://www.linkedin.com/in/yaraa-fouad/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "15px",
-                textDecoration: "none",
-                color: "#111",
-              }}
-            >
-              <i
-                className="bi bi-linkedin"
-                style={{ fontSize: "24px" }}
-              ></i>
+                <span>GitHub</span>
+              </a>
 
-              <span>LinkedIn</span>
-            </a>
+              {/* LinkedIn */}
+              <a
+                href="https://www.linkedin.com/in/yaraa-fouad/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
+                <span className="contact-icon">
+                  <i className="bi bi-linkedin"></i>
+                </span>
+
+                <span>LinkedIn</span>
+              </a>
+
+            </div>
           </motion.div>
 
           {/* Contact Form */}
@@ -207,19 +141,14 @@ export default function Contact() {
           >
             <form
               onSubmit={sendEmail}
-              style={{
-                background: "#f9f9f9",
-                padding: "35px",
-                borderRadius: "15px",
-                border: "1px solid #ddd",
-              }}
+              className="contact-form"
             >
+
               {/* Name */}
               <div className="mb-3">
                 <label
                   htmlFor="name"
-                  className="form-label"
-                  style={{ fontWeight: 600 }}
+                  className="form-label contact-label-text"
                 >
                   Your Name
                 </label>
@@ -228,7 +157,7 @@ export default function Contact() {
                   type="text"
                   id="name"
                   name="from_name"
-                  className="form-control"
+                  className="form-control contact-input"
                   placeholder="Enter your name"
                   required
                 />
@@ -238,8 +167,7 @@ export default function Contact() {
               <div className="mb-3">
                 <label
                   htmlFor="email"
-                  className="form-label"
-                  style={{ fontWeight: 600 }}
+                  className="form-label contact-label-text"
                 >
                   Your Email
                 </label>
@@ -248,7 +176,7 @@ export default function Contact() {
                   type="email"
                   id="email"
                   name="from_email"
-                  className="form-control"
+                  className="form-control contact-input"
                   placeholder="Enter your email"
                   required
                 />
@@ -258,8 +186,7 @@ export default function Contact() {
               <div className="mb-4">
                 <label
                   htmlFor="message"
-                  className="form-label"
-                  style={{ fontWeight: 600 }}
+                  className="form-label contact-label-text"
                 >
                   Message
                 </label>
@@ -267,7 +194,7 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
-                  className="form-control"
+                  className="form-control contact-input contact-textarea"
                   rows={6}
                   placeholder="Write your message..."
                   required
@@ -276,29 +203,31 @@ export default function Contact() {
 
               {/* Success */}
               {sent && (
-                <p
-                  style={{
-                    color: "green",
-                    textAlign: "center",
-                    fontWeight: 600,
-                  }}
+                <motion.p
+                  className="contact-success"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
                 >
                   Message sent successfully! ❤️
-                </p>
+                </motion.p>
               )}
 
               {/* Send */}
               <motion.button
                 type="submit"
-                className="btn btn-dark w-100"
+                className="theme-btn contact-submit"
                 disabled={loading}
                 whileHover={!loading ? { scale: 1.02 } : {}}
                 whileTap={!loading ? { scale: 0.98 } : {}}
               >
+                <i className="bi bi-send-fill"></i>
+
                 {loading ? "Sending..." : "Send Message"}
               </motion.button>
+
             </form>
           </motion.div>
+
         </div>
       </div>
     </section>

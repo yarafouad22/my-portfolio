@@ -26,9 +26,9 @@ export default function Home() {
   return (
     <>
       {/* HERO SECTION */}
-<section
+ <section
   id="Home"
-  className="position-relative overflow-hidden"
+  className="position-relative overflow-hidden text-theme"
   style={{
     minHeight: "100vh",
     display: "flex",
@@ -55,6 +55,7 @@ export default function Home() {
             <div className="col-md-6 text-center left-side">
 
               {/* Profile Image */}
+              
               <div className="profile-image">
                 <img
                   src="/photo_2024-11-19_00-10-57-modified.png"
@@ -74,7 +75,7 @@ export default function Home() {
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=yaraf4902email@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-dark"
+                    className="btn theme-btn"
                 >
                   Email me
                 </a>
@@ -136,14 +137,16 @@ export default function Home() {
                   href="/Yara-Fouad-CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-dark"
+                  className="btn theme-btn"
+
                 >
                   Resume
                 </a>
 
                 <Link
                   to="/Projects"
-                  className="btn btn-dark"
+                  className="btn theme-btn"
+
                 >
                   Portfolio
                 </Link>

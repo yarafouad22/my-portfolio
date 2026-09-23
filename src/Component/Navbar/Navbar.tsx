@@ -1,19 +1,11 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-
-        {/* Logo */}
-        {/* <Link className="navbar-brand" to="/">
-          <img
-            src="/photo_2024-11-19_00-10-57-modified.png"
-            alt="Brand Logo"
-          />
-        </Link> */}
-
         {/* Mobile Toggle Button */}
         <button
           className="navbar-toggler"
@@ -26,26 +18,26 @@ function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
+        <ThemeSwitcher/>
         {/* Navigation */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
 
             <li className="nav-item">
-              <Link className="nav-link active" to="/">
+              <NavLink className="nav-link" to="/">
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/Projects">
+              <NavLink className="nav-link" to="/Projects">
                 Projects
-              </Link>
+              </NavLink>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/contact">
+              <NavLink className="nav-link" to="/contact">
                 Contact
-              </Link>
+              </NavLink>
             </li>
 
           </ul>
