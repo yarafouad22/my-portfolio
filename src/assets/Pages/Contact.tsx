@@ -40,7 +40,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="Contact" className="contact-section">
+    <section id="Contact" className="contact-section mt-5">
       <div className="contact-container">
 
         {/* Header */}
