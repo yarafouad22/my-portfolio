@@ -2,7 +2,7 @@ import { useTheme } from "@heroui/react";
 import { useEffect, useState } from "react";
 
 export default function ThemeSwitcher() {
-  const { resolvedTheme, setTheme } = useTheme("system");
+  const { resolvedTheme, setTheme } = useTheme("light");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
