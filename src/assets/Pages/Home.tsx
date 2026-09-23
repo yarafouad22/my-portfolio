@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <>
       {/* HERO SECTION */}
- <section
+<section
   id="Home"
   className="position-relative overflow-hidden text-theme"
   style={{
@@ -34,6 +34,8 @@ export default function Home() {
     display: "flex",
     alignItems: "center",
     padding: "100px 0 60px",
+    background: "var(--bg-color)",
+    color: "var(--text-color)",
   }}
 >
 
