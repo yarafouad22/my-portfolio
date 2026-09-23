@@ -1,22 +1,35 @@
-import { useTheme } from "@heroui/react";
 import { useEffect, useState } from "react";
 
 export default function ThemeSwitcher() {
-  const { resolvedTheme, setTheme } = useTheme("light");
+  const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+
+    const dark = savedTheme === "dark";
+
+    document.documentElement.classList.toggle("dark", dark);
+    setIsDark(dark);
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  const toggleTheme = () => {
+    const newIsDark = !isDark;
 
-  const isDark = resolvedTheme === "dark";
+    document.documentElement.classList.toggle("dark", newIsDark);
+
+    localStorage.setItem("theme", newIsDark ? "dark" : "light");
+
+    setIsDark(newIsDark);
+  };
+
+  if (!mounted) return null;
 
   return (
     <button
       type="button"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={toggleTheme}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Light Mode" : "Dark Mode"}
       className="theme-toggle"
