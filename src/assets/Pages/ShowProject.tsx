@@ -119,7 +119,6 @@ export default function Skills() {
 
 function SkillCard({
   category,
-  index,
 }: {
   category: SkillCategory;
   index: number;
