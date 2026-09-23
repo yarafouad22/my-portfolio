@@ -18,7 +18,7 @@ export default function Home() {
       if (index > text.length) {
         clearInterval(typing);
       }
-    }, 10);
+    }, 2);
 
     return () => clearInterval(typing);
   }, []);
@@ -84,39 +84,32 @@ export default function Home() {
               </div>
 
               {/* Social Links */}
-              <div className="social-links mt-3">
+              <div className="footer-socials d-flex accordion justify-content-center mt-4  gap-3 ">
+            <a
+              href="https://github.com/yarafouad22"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <i className="bi bi-github"></i>
+            </a>
 
-                {/* Email */}
-                <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=yaraf4902email@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Email"
-                >
-                  <i className="bi bi-envelope-fill"></i>
-                </a>
+            <a
+              href="https://www.linkedin.com/in/yaraa-fouad/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <i className="bi bi-linkedin"></i>
+            </a>
 
-                {/* GitHub */}
-                <a
-                  href="https://github.com/yarafouad22"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                >
-                  <i className="bi bi-github"></i>
-                </a>
-
-                {/* LinkedIn */}
-                <a
-                  href="https://www.linkedin.com/in/yaraa-fouad/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                >
-                  <i className="bi bi-linkedin"></i>
-                </a>
-
-              </div>
+            <a
+              href="mailto:yaraf4902email@gmail.com"
+              aria-label="Email"
+            >
+              <i className="bi bi-envelope-fill"></i>
+            </a>
+          </div>
             </div>
 
             {/* RIGHT SIDE */}
