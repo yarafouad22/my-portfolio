@@ -22,6 +22,15 @@ const projects: Project[] = [
     demo: "https://nutri-plan-coral.vercel.app/",
   },
   {
+    title: "Articles",
+   description:
+  "A photography blog featuring inspiring articles, practical tips, and insights to help photographers improve their skills and creativity.",
+    image: "/Screenshot (167).png",
+    technologies: ["json", "Bootstrap", "Jsx","React","Vite"],
+    github: "https://github.com/yarafouad22/articles",
+    demo: "https://articles-tau-ten.vercel.app/",
+  },
+  {
     title: "The UX Review",
     description:
       "A UX Review web application for exploring articles, authors, categories, and digital culture content.",
