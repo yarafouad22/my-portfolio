@@ -49,6 +49,15 @@ const projects: Project[] = [
     demo: "https://weather-two-lac-13.vercel.app/",
   },
   {
+    title: "quizania",
+   description:
+  "A responsive quiz application featuring interactive questions, score tracking, and an engaging interface for testing users' knowledge.",
+    image: "/Screenshot (170).png",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/yarafouad22/QuizMania",
+    demo: "https://quizania-plum.vercel.app/",
+  },
+  {
     title: "DJI Mavic 4 Pro",
     description:
       "A responsive landing page for the DJI Mavic 4 Pro, designed to showcase the drone, its features, and specifications.",
