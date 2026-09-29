@@ -84,6 +84,15 @@ const projects: Project[] = [
     github: "https://github.com/yarafouad22/what-is-for-dinner.git",
     demo: "https://what-is-for-dinner-rho.vercel.app/",
   },
+  {
+    title: "Baker",
+   description:
+  "A responsive recipe website that helps users discover delicious recipes through a clean and user-friendly interface.",
+    image: "/Screenshot (168).png",
+    technologies: ["HTML", "CSS"],
+    github: "https://github.com/yarafouad22/Baker",
+    demo: "https://baker-alpha.vercel.app/",
+  },
 ];
 
 const categories = [
