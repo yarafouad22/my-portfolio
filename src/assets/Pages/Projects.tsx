@@ -40,6 +40,15 @@ const projects: Project[] = [
     demo: "https://flex-2-nu.vercel.app/",
   },
   {
+    title: "weather-today",
+    description:
+  "A responsive weather application that provides current conditions and forecasts using real-time weather data from an API.",
+    image: "/Screenshot (169).png",
+    technologies: ["HTML", "CSS", "API"],
+    github: "https://github.com/yarafouad22/Weather",
+    demo: "https://weather-two-lac-13.vercel.app/",
+  },
+  {
     title: "DJI Mavic 4 Pro",
     description:
       "A responsive landing page for the DJI Mavic 4 Pro, designed to showcase the drone, its features, and specifications.",
