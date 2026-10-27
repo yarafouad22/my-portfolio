@@ -25,7 +25,7 @@ const projects: Project[] = [
     title: "Social App",
     description:
       "A social media web application for connecting users and sharing content.",
-    image: "/Screenshot (162).png",
+    image: "",
     technologies: ["API", "Bootstrap", "React", "Tailwind","zod","React Hook Form"],
     github: "https://github.com/yarafouad22/social-app.git",
     demo: "https://social-app-pearl-six.vercel.app/",
